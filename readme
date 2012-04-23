@@ -1,0 +1,140 @@
+Primera Versión Libreta de Direcciones 1.0
+
+import java.io.*;
+public class tarea {
+
+
+public static void main(String[] args) throws IOException {
+InputStreamReader x=new InputStreamReader (System.in);
+BufferedReader y=new BufferedReader (x);
+String opcion;
+
+File Guardar =new File("C:/Users/Administrator/libreta-direcciones/.hg/archivo.txt");
+FileWriter Guardx=new FileWriter(Guardar);
+
+System.out.print(" LIBRETA DE DIRECCIONES. \n Por favor elija una de las opciones: ");
+int num;
+do {
+System.out.print("\n 1.- Ingreso Nuevo:");
+System.out.print("\n 2.- Consulta de Contactos: ");
+System.out.print("\n 3.- Salir: ");
+String texto4=y.readLine();
+num=Integer.parseInt(texto4);
+
+
+switch(num){
+case 1:
+do { System.out.print("INGRESO DE NUEVO CONTACTO ");
+
+System.out.print(" ESCRIBA EL NOMBRE POR FAVOR");
+System.out.print(" Primer Apellido : ");
+String ap=y.readLine();
+
+System.out.print("Segundo Apellido : ");
+String am=y.readLine();
+
+System.out.print("Nombre(s): ");
+String nom=y.readLine();
+
+
+System.out.print("Dirección : ");
+String calle=y.readLine();
+
+
+System.out.print("Barrio: ");
+String col=y.readLine();
+
+System.out.print("Ciudad: ");
+String ciu=y.readLine();
+
+
+System.out.print("Celular: ");
+String tel=y.readLine();
+
+System.out.print("E-Mail: ");
+String mail=y.readLine();
+
+System.out.print("Tipo Familia, Trabajo, Otros ");
+String tipo=y.readLine();
+
+
+while (tipo.equals("f")) {
+	
+	 tipo ="Familia";
+}
+while (tipo.equals("t")) {
+	
+	 tipo ="Trabajo";
+}
+while (tipo.equals("o")) {
+	
+	 tipo ="Otros";
+}
+
+
+
+System.out.print(" ¡LISTO! ");
+System.out.println(" "+nom+" "+ap+" "+am+". HA SIDO AGREGADO CON TODOS SUS DATOS EXITOSAMENTE");
+
+String Texto = "El Texto que se desea guardar";
+try{
+
+
+if(Guardar !=null){
+
+Guardx.write(nom+" "+ap+" "+am+ "" +calle +"  " +col+" " +ciu+""+tel+"," +mail + "-" +tipo +" "+"\n");
+}
+}
+
+catch(IOException ioe){
+System.out.println(ioe);
+}
+System.out.println("¿Agregar a otro contacto?(S/N)");
+opcion=y.readLine();
+} while (opcion.equals("s"));
+Guardx.close();
+break;
+
+case 2:
+
+File archivo = null;
+FileReader fr = null;
+BufferedReader br = null;
+
+try {
+
+archivo = new File ("C:/Users/Administrator/libreta-direcciones/.hg/archivo.txt");
+fr = new FileReader (archivo);
+br = new BufferedReader(fr);
+
+String linea;
+while((linea=br.readLine())!=null)
+System.out.println("\n"+linea);
+}
+catch(Exception e){
+e.printStackTrace();
+}finally{
+
+try{
+if( null != fr ){
+fr.close();
+}
+}catch (Exception e2){
+e2.printStackTrace();
+}
+}
+break;
+
+case 3:
+System.out.print(" PROGRAMA TERMINADO...");
+break;
+
+default:
+System.out.print(" ELIJA UNA OPCIÓN QUE EXISTA EN EL MENÚ:");
+}
+} while(num!=3);
+
+}
+}
+
+
